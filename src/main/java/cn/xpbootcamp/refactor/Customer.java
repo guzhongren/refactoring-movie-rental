@@ -3,16 +3,17 @@ package cn.xpbootcamp.refactor;
 import java.util.Enumeration;
 import java.util.Vector;
 
-public class Customer {
+public class Customer implements CustomerInterface {
 
     private String name;
     private Vector<Rental> rentals = new Vector<>();
+    private int frequentRenterPoints;
 
     Customer(String name) {
         this.name = name;
     }
 
-    void addRental(Rental rental) {
+    public void addRental(Rental rental) {
         rentals.addElement(rental);
     }
 
@@ -22,7 +23,7 @@ public class Customer {
 
     String statement() {
         double totalAmount = 0d;
-        int frequentRenterPoints = 0;
+        frequentRenterPoints = 0;
         Enumeration<Rental> rentals = this.rentals.elements();
         StringBuilder result = new StringBuilder("Rental Record for " + getName() + "：\n");
         while (rentals.hasMoreElements()) {
