@@ -49,16 +49,16 @@ public class Customer implements CustomerInterface {
         double thisAmount = 0d;
         switch (each.getMovie().getMovieType()) {
             case NEW_RELEASE:
-                thisAmount += each.getDaysRented() * NEW_RELEASE_PEER_DAY;
+                thisAmount += each.rentedDays() * NEW_RELEASE_PEER_DAY;
                 break;
             case HISTORY:
                 thisAmount += HISTORY_CONST_IN_BASE_DAYS;
-                if (each.getDaysRented() > HISTORY_BASE_DAYS)
-                    thisAmount += (each.getDaysRented() - HISTORY_BASE_DAYS) * HISTORY_CONST_OF_OUT_2_DAYS;
+                if (each.rentedDays() > HISTORY_BASE_DAYS)
+                    thisAmount += (each.rentedDays() - HISTORY_BASE_DAYS) * HISTORY_CONST_OF_OUT_2_DAYS;
                 break;
             case CAMPUS:
                 thisAmount += CAMPUS_CONST_IN_3_DAYS;
-                int rentedDays = each.getDaysRented();
+                int rentedDays = each.rentedDays();
                 if (rentedDays > CAMPUS_BASE_DAYS)
                     thisAmount += (rentedDays - CAMPUS_BASE_DAYS) * CAMPUS_CONST_PEER_DAY;
                 break;
@@ -85,7 +85,7 @@ public class Customer implements CustomerInterface {
 
     private void getFrequentRenterPoints(Rental each) {
         frequentRenterPoints++;
-        if (isNewRelease(each.getMovie()) && each.getDaysRented() > 1)
+        if (isNewRelease(each.getMovie()) && each.rentedDays() > 1)
             frequentRenterPoints++;
     }
 

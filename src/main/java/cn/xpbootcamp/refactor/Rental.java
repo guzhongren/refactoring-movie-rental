@@ -1,21 +1,21 @@
 package cn.xpbootcamp.refactor;
 
-public class Rental {
+public class Rental implements RentalInterface {
 
     private Movie movie;
-    private int daysRented;
+    private int rentedDays;
 
-    Rental(Movie movie, int daysRented) {
+    Rental(Movie movie, int rentedDays) {
         this.movie = movie;
-        this.daysRented = daysRented;
+        this.rentedDays = rentedDays;
     }
 
-    Movie getMovie() {
+    public Movie getMovie() {
         return movie;
     }
 
-    int getDaysRented() {
-        return daysRented;
+    public int rentedDays() {
+        return rentedDays;
     }
 
 }
