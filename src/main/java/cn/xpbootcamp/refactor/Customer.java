@@ -22,10 +22,6 @@ public class Customer implements CustomerInterface {
         this.name = name;
     }
 
-    String getName() {
-        return name;
-    }
-
 
     public void addRental(Rental rental) {
         rentals.addElement(rental);
@@ -46,7 +42,7 @@ public class Customer implements CustomerInterface {
     }
 
     private StringBuilder generateRentalHeader() {
-        return new StringBuilder("Rental Record for " + getName() + "：\n");
+        return new StringBuilder("Rental Record for " + name + "：\n");
     }
 
     private double getAmount(Rental each) {
