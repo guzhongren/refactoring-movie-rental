@@ -21,7 +21,7 @@ public class Customer implements CustomerInterface {
         return name;
     }
 
-    String statement() {
+    public String statement() {
         double totalAmount = 0d;
         frequentRenterPoints = 0;
         Enumeration<Rental> rentals = this.rentals.elements();
@@ -31,16 +31,16 @@ public class Customer implements CustomerInterface {
             //show figures for this rental
             //determine amounts for each line
             double thisAmount = 0d;
-            switch (each.getMovie().getPriceCode()) {
-                case Movie.HISTORY:
+            switch (each.getMovie().getMovieType()) {
+                case HISTORY:
                     thisAmount += 2;
                     if (each.getDaysRented() > 2)
                         thisAmount += (each.getDaysRented() - 2) * 1.5;
                     break;
-                case Movie.NEW_RELEASE:
+                case NEW_RELEASE:
                     thisAmount += each.getDaysRented() * 3;
                     break;
-                case Movie.CAMPUS:
+                case CAMPUS:
                     thisAmount += 1.5;
                     if (each.getDaysRented() > 3)
                         thisAmount += (each.getDaysRented() - 3) * 1.5;
@@ -48,7 +48,7 @@ public class Customer implements CustomerInterface {
             }
             //add frequent renter points
             frequentRenterPoints++;
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1)
+            if ((each.getMovie().getMovieType() == MovieType.NEW_RELEASE) && each.getDaysRented() > 1)
                 frequentRenterPoints++;
 
             //show figures for this rental
